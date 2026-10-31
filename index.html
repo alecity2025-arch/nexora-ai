@@ -8,7 +8,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
 body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0e0e0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-/* TOP NAV - RESPONSIVO */
 .top-nav { background-color: #0A0F1A; border-bottom: 1px solid #2E5BFF; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; z-index: 100; flex-wrap: wrap; gap: 8px; }
 .nav-logo { display: flex; align-items: center; gap: 10px; }
 .logo-n { width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle, #00E5FF, #2E5BFF, #A855F7); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); font-size: 0.9em; }
@@ -18,12 +17,10 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 .mode-btn.active { background: linear-gradient(90deg, #00E5FF, #A855F7); color: white; }
 .admin-status { font-size: 0.7em; color: #4ecca3; font-family: monospace; }
 
-/* APP CONTAINER */
 .app-container { flex: 1; display: flex; overflow: hidden; position: relative; }
 .view-section { display: none; width: 100%; height: 100%; }
 .view-section.active { display: flex; }
 
-/* PLAYER VIEW - MOBILE FIRST */
 .player-sidebar { width: 100%; background-color: #0A0F1A; padding: 15px; display: flex; flex-direction: column; overflow-y: auto; position: absolute; top: 0; left: 0; z-index: 50; transition: transform 0.3s; }
 .player-sidebar.hidden { transform: translateX(-100%); }
 .live-web-badge { background: linear-gradient(90deg, #00E5FF, #2E5BFF); padding: 6px 10px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; font-size: 0.75em; font-weight: bold; animation: pulseWeb 2s infinite; }
@@ -46,15 +43,16 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 .msg-nexora { background: #1A1F2E; align-self: flex-start; border-left: 3px solid #A855F7; }
 .msg-user { background: linear-gradient(135deg, #2E5BFF, #1A1F2E); align-self: flex-end; border-right: 3px solid #00E5FF; color: white; }
 .msg-nexora strong { color: #A855F7; }
-.input-area { padding: 12px; background: #1A1F2E; border-top: 1px solid #2E5BFF; display: flex; gap: 8px; align-items: center; }
-.input-area input { flex: 1; padding: 10px 14px; border-radius: 20px; border: 1px solid #2E5BFF; background: #0A0F1A; color: white; outline: none; font-size: 0.9em; }
+
+/* INPUT AREA CORRIGIDA */
+.input-area { padding: 10px; background: #1A1F2E; border-top: 1px solid #2E5BFF; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.input-area input { flex: 1; min-width: 150px; padding: 10px 14px; border-radius: 20px; border: 1px solid #2E5BFF; background: #0A0F1A; color: white; outline: none; font-size: 0.9em; }
 .input-area input:focus { border-color: #00E5FF; }
-.btn-icon { width: 36px; height: 36px; border-radius: 50%; border: none; background: linear-gradient(135deg, #2E5BFF, #A855F7); color: white; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.btn-icon { width: 38px; height: 38px; border-radius: 50%; border: none; background: linear-gradient(135deg, #2E5BFF, #A855F7); color: white; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .btn-web { background: linear-gradient(135deg, #00E5FF, #2E5BFF); }
 .btn-media { background: linear-gradient(135deg, #A855F7, #2E5BFF); }
-.btn-send { background: linear-gradient(90deg, #00E5FF, #A855F7); width: auto; padding: 0 16px; border-radius: 20px; }
+.btn-send { background: linear-gradient(90deg, #00E5FF, #A855F7); width: auto; padding: 10px 18px; border-radius: 20px; font-weight: bold; }
 
-/* ADMIN VIEW - MOBILE */
 .admin-sidebar { width: 100%; background-color: #0A0F1A; padding: 15px; display: flex; flex-direction: column; position: absolute; top: 0; left: 0; z-index: 50; transition: transform 0.3s; }
 .admin-sidebar.hidden { transform: translateX(-100%); }
 .admin-badge { background: linear-gradient(90deg, #A855F7, #2E5BFF); padding: 8px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 0.85em; margin-bottom: 20px; }
@@ -82,7 +80,6 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 input:checked + .slider { background: linear-gradient(90deg, #00E5FF, #A855F7); }
 input:checked + .slider:before { transform: translateX(20px); }
 
-/* AUTH MODAL */
 .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
 .auth-box { background: #1A1F2E; padding: 25px; border-radius: 12px; border: 1px solid #A855F7; width: 100%; max-width: 320px; text-align: center; }
 .auth-box h3 { color: #A855F7; margin-bottom: 12px; font-size: 1.1em; }
@@ -91,24 +88,22 @@ input:checked + .slider:before { transform: translateX(20px); }
 .auth-box button { width: 100%; padding: 10px; background: linear-gradient(90deg, #00E5FF, #A855F7); border: none; color: white; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 0.95em; }
 .auth-error { color: #ff4757; font-size: 0.8em; margin-top: 8px; display: none; }
 
-/* SCROLLBAR */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0A0F1A; }
 ::-webkit-scrollbar-thumb { background: #2E5BFF; border-radius: 3px; }
 
-/* RESPONSIVE - DESKTOP */
 @media (min-width: 768px) {
   .player-sidebar, .admin-sidebar { width: 260px; position: relative; transform: none !important; }
   .toggle-sidebar-btn { display: none; }
   .top-nav { padding: 12px 25px; }
   .chat-area { padding: 25px; }
   .admin-content { padding: 30px; }
+  .input-area { flex-wrap: nowrap; }
 }
 </style>
 </head>
 <body>
 
-<!-- AUTH MODAL -->
 <div class="auth-modal" id="authModal">
 <div class="auth-box">
 <h3>🔒 Autenticação de Criador</h3>
@@ -120,7 +115,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 </div>
 </div>
 
-<!-- TOP NAV -->
 <div class="top-nav">
 <div class="nav-logo">
 <div class="logo-n">N</div>
@@ -135,7 +129,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 <div class="app-container">
 
-<!-- PLAYER VIEW -->
 <div class="view-section active" id="playerView">
 <button class="toggle-sidebar-btn" onclick="toggleSidebar('player')">☰</button>
 <div class="player-sidebar" id="playerSidebar">
@@ -171,12 +164,11 @@ Para começar, me diga: <strong>Qual o universo e o nome do seu personagem?</str
 <button class="btn-icon btn-web" title="Pesquisar na Web">🌐</button>
 <button class="btn-icon btn-media" title="Ler/Assistir Mídia" onclick="triggerMedia()">📺</button>
 <input type="text" id="playerInput" placeholder="Digite sua ação, fala ou peça para ler um capítulo..." onkeypress="handlePlayerEnter(event)">
-<button class="btn-icon btn-send" onclick="sendPlayerMsg()">➤</button>
+<button class="btn-icon btn-send" onclick="sendPlayerMsg()">➤ Enviar</button>
 </div>
 </div>
 </div>
 
-<!-- ADMIN VIEW -->
 <div class="view-section" id="adminView">
 <button class="toggle-sidebar-btn" onclick="toggleSidebar('admin')">☰</button>
 <div class="admin-sidebar" id="adminSidebar">
