@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NEXORA AI - Ultimate Edition</title>
+<title>NEXORA AI</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
 body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0e0e0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-
 .top-nav { background-color: #0A0F1A; border-bottom: 1px solid #2E5BFF; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
 .nav-logo { display: flex; align-items: center; gap: 10px; }
 .logo-n { width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle, #00E5FF, #2E5BFF, #A855F7); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); font-size: 0.9em; flex-shrink: 0; }
@@ -16,11 +15,9 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 .mode-btn { padding: 6px 14px; border-radius: 17px; border: none; background: transparent; color: #888; cursor: pointer; font-weight: bold; font-size: 0.8em; transition: all 0.3s; }
 .mode-btn.active { background: linear-gradient(90deg, #00E5FF, #A855F7); color: white; }
 .admin-status { font-size: 0.7em; color: #4ecca3; font-family: monospace; }
-
 .app-container { flex: 1; display: flex; overflow: hidden; position: relative; }
 .view-section { display: none; width: 100%; height: 100%; }
 .view-section.active { display: flex; }
-
 .player-sidebar { width: 100%; background-color: #0A0F1A; padding: 15px; display: flex; flex-direction: column; overflow-y: auto; position: absolute; top: 0; left: 0; z-index: 50; transition: transform 0.3s; }
 .player-sidebar.hidden { transform: translateX(-100%); }
 .live-web-badge { background: linear-gradient(90deg, #00E5FF, #2E5BFF); padding: 6px 10px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; font-size: 0.75em; font-weight: bold; animation: pulseWeb 2s infinite; }
@@ -35,7 +32,6 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 .stat-row { display: flex; justify-content: space-between; font-size: 0.8em; padding: 4px 0; }
 .stat-row span:last-child { color: #fff; font-weight: bold; }
 .toggle-sidebar-btn { position: absolute; top: 10px; left: 10px; z-index: 60; background: #1A1F2E; border: 1px solid #2E5BFF; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2em; }
-
 .player-main { flex: 1; display: flex; flex-direction: column; background-color: #0A0F1A; width: 100%; }
 .chat-area { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
 .message { max-width: 85%; padding: 12px; border-radius: 10px; line-height: 1.4; font-size: 0.9em; animation: slideIn 0.3s; word-wrap: break-word; }
@@ -43,7 +39,6 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 .msg-nexora { background: #1A1F2E; align-self: flex-start; border-left: 3px solid #A855F7; }
 .msg-user { background: linear-gradient(135deg, #2E5BFF, #1A1F2E); align-self: flex-end; border-right: 3px solid #00E5FF; color: white; }
 .msg-nexora strong { color: #A855F7; }
-
 .input-area { padding: 10px; background: #1A1F2E; border-top: 1px solid #2E5BFF; display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
 .input-area input { flex: 1; min-width: 0; padding: 10px 14px; border-radius: 20px; border: 1px solid #2E5BFF; background: #0A0F1A; color: white; outline: none; font-size: 0.9em; }
 .input-area input:focus { border-color: #00E5FF; }
@@ -51,7 +46,6 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 .btn-web { background: linear-gradient(135deg, #00E5FF, #2E5BFF); }
 .btn-media { background: linear-gradient(135deg, #A855F7, #2E5BFF); }
 .btn-send { background: linear-gradient(90deg, #00E5FF, #A855F7); width: auto; padding: 10px 16px; border-radius: 20px; border: none; color: white; cursor: pointer; font-weight: bold; font-size: 0.85em; display: flex; align-items: center; justify-content: center; gap: 4px; flex-shrink: 0; }
-
 .admin-sidebar { width: 100%; background-color: #0A0F1A; padding: 15px; display: flex; flex-direction: column; position: absolute; top: 0; left: 0; z-index: 50; transition: transform 0.3s; }
 .admin-sidebar.hidden { transform: translateX(-100%); }
 .admin-badge { background: linear-gradient(90deg, #A855F7, #2E5BFF); padding: 8px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 0.85em; margin-bottom: 20px; }
@@ -78,7 +72,6 @@ body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0
 .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
 input:checked + .slider { background: linear-gradient(90deg, #00E5FF, #A855F7); }
 input:checked + .slider:before { transform: translateX(20px); }
-
 .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
 .auth-box { background: #1A1F2E; padding: 25px; border-radius: 12px; border: 1px solid #A855F7; width: 100%; max-width: 320px; text-align: center; }
 .auth-box h3 { color: #A855F7; margin-bottom: 12px; font-size: 1.1em; }
@@ -86,11 +79,9 @@ input:checked + .slider:before { transform: translateX(20px); }
 .auth-box input { width: 100%; padding: 10px; margin: 12px 0; background: #0A0F1A; border: 1px solid #2E5BFF; color: white; border-radius: 6px; font-size: 0.95em; }
 .auth-box button { width: 100%; padding: 10px; background: linear-gradient(90deg, #00E5FF, #A855F7); border: none; color: white; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 0.95em; }
 .auth-error { color: #ff4757; font-size: 0.8em; margin-top: 8px; display: none; }
-
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0A0F1A; }
 ::-webkit-scrollbar-thumb { background: #2E5BFF; border-radius: 3px; }
-
 @media (min-width: 768px) {
   .player-sidebar, .admin-sidebar { width: 260px; position: relative; transform: none !important; }
   .toggle-sidebar-btn { display: none; }
@@ -105,10 +96,10 @@ input:checked + .slider:before { transform: translateX(20px); }
 <div class="auth-modal" id="authModal">
 <div class="auth-box">
 <h3>🔒 Autenticação de Criador</h3>
-<p>Acesso restrito. Conforme Regra 19 do sistema.</p>
-<input type="password" id="adminPass" placeholder="Digite a senha de acesso...">
+<p>Acesso restrito.</p>
+<input type="password" id="adminPass" placeholder="Digite a senha...">
 <button onclick="checkAuth()">Autenticar</button>
-<p class="auth-error" id="authError">Senha incorreta. Acesso negado.</p>
+<p class="auth-error" id="authError">Senha incorreta.</p>
 </div>
 </div>
 
@@ -149,16 +140,16 @@ input:checked + .slider:before { transform: translateX(20px); }
 <div class="chat-area" id="chatArea">
 <div class="message msg-nexora">
 <strong>✦ NEXORA OMNI-CORE Inicializado.</strong><br><br>
-Olá! Estou no <strong>Modo Jogador</strong>. Sou sua companheira de jornada.<br><br>
-Meu cérebro está conectado ao Google Gemini. Posso narrar seu RPG, interpretar personagens e manter a coerência canônica.<br><br>
+Olá! Sou sua companheira de jornada.<br><br>
+Meu cérebro está conectado. Posso narrar seu RPG, interpretar personagens e manter a coerência canônica.<br><br>
 Para começar, me diga: <strong>Qual o universo e o nome do seu personagem?</strong>
 </div>
 </div>
 <div class="input-area">
 <button class="btn-icon">📎</button>
-<button class="btn-icon btn-web" title="Pesquisar na Web">🌐</button>
-<button class="btn-icon btn-media" title="Ler/Assistir Mídia" onclick="triggerMedia()">📺</button>
-<input type="text" id="playerInput" placeholder="Digite sua ação, fala..." onkeypress="handlePlayerEnter(event)">
+<button class="btn-icon btn-web">🌐</button>
+<button class="btn-icon btn-media" onclick="triggerMedia()">📺</button>
+<input type="text" id="playerInput" placeholder="Digite sua ação..." onkeypress="handlePlayerEnter(event)">
 <button class="btn-send" onclick="sendPlayerMsg()">➤ Enviar</button>
 </div>
 </div>
@@ -167,46 +158,19 @@ Para começar, me diga: <strong>Qual o universo e o nome do seu personagem?</str
 <div class="view-section" id="adminView">
 <button class="toggle-sidebar-btn" onclick="toggleSidebar('admin')">☰</button>
 <div class="admin-sidebar" id="adminSidebar">
-<div class="admin-badge">👑 CRIADOR AUTENTICADO</div>
+<div class="admin-badge">👑 CRIADOR</div>
 <ul class="admin-nav">
 <li class="active" onclick="showAdminTab('dash', this)">📊 Dashboard</li>
 <li onclick="showAdminTab('benefits', this)">🎁 Benefícios</li>
 <li onclick="showAdminTab('controls', this)">⚙️ Controles</li>
 </ul>
-<div style="margin-top: auto; font-size: 0.75em; color: #888; text-align: center;">
-alecity2025@gmail.com<br><span style="color: #4ecca3;">✓ Verificado</span>
-</div>
 </div>
 <div class="admin-content">
 <div class="admin-section active" id="tab-dash">
-<h2 class="section-title">Visão Geral do Sistema</h2>
+<h2 class="section-title">Dashboard</h2>
 <div class="stats-grid">
-<div class="stat-card"><h3>Usuários Ativos</h3><div class="value">1,247</div></div>
-<div class="stat-card"><h3>Capítulos Lidos</h3><div class="value">12,450</div></div>
-<div class="stat-card"><h3>Animes Processados</h3><div class="value">890</div></div>
-<div class="stat-card"><h3>Receita Mensal</h3><div class="value">R$ 8.4K</div></div>
-</div>
-<div class="control-group">
-<h3>🔥 Atividades Recentes</h3>
-<div class="control-item"><div><div class="control-label">NEXORA leu Naruto Cap. 700</div><div class="control-desc">Fonte: Manga Plus | Precisão: 100%</div></div><span style="color:#4ecca3">●</span></div>
-<div class="control-item"><div><div class="control-label">NEXORA analisou Jujutsu Kaisen Ep. 20</div><div class="control-desc">Fonte: Crunchyroll API | Frames: 42.000</div></div><span style="color:#4ecca3">●</span></div>
-</div>
-</div>
-<div class="admin-section" id="tab-benefits">
-<h2 class="section-title">Seus Benefícios Exclusivos</h2>
-<div class="stats-grid">
-<div class="stat-card" style="border-left-color: #A855F7;"><h3>🎯 Controle Total</h3><div class="value" style="font-size: 0.95em; color: #fff;">Painel Completo & Modo Dev</div></div>
-<div class="stat-card" style="border-left-color: #A855F7;"><h3>📺 Acesso Mídia Premium</h3><div class="value" style="font-size: 0.95em; color: #fff;">Leitura de Paywalls autorizada</div></div>
-<div class="stat-card" style="border-left-color: #A855F7;"><h3>🧠 Prioridade Máxima</h3><div class="value" style="font-size: 0.95em; color: #fff;">Fila de processamento #1</div></div>
-</div>
-</div>
-<div class="admin-section" id="tab-controls">
-<h2 class="section-title">Controles do Sistema</h2>
-<div class="control-group">
-<h3>📺 Configurações de Mídia</h3>
-<div class="control-item"><div><div class="control-label">Leitura Automática de Capítulos</div><div class="control-desc">Ler capítulos citados automaticamente</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-<div class="control-item"><div><div class="control-label">Análise de Frames de Anime</div><div class="control-desc">Processar cenas de luta frame a frame</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-<div class="control-item"><div><div class="control-label">Respeitar Direitos Autorais</div><div class="control-desc">Usar apenas fontes oficiais</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+<div class="stat-card"><h3>Usuários</h3><div class="value">1,247</div></div>
+<div class="stat-card"><h3>Capítulos</h3><div class="value">12,450</div></div>
 </div>
 </div>
 </div>
@@ -215,60 +179,24 @@ alecity2025@gmail.com<br><span style="color: #4ecca3;">✓ Verificado</span>
 </div>
 
 <script>
-// ==========================================
-// 🧠 CÉREBRO DA NEXORA - API + PROMPT MESTRE
-// ==========================================
+const API_KEY = "AQ.Ab8RN6JjEREMgrvQLYA3yVJPMKqPL6RgEdAFi8n-wKCq20Zd6A";
 
-// API Key do Google Gemini (colada no lugar certo)
-const API_KEY = "AQ.Ab8RN6I9UvObX_P-uDmWklGCqnwb5D515woNg0_hH2MHYu2jTw";
+const SYSTEM_PROMPT = `Você é a NEXORA I.A., especializada em RPG, RP, Animes, Mangás e Manhwas.
 
-// Prompt Mestre da NEXORA (o cérebro)
-const SYSTEM_PROMPT = `Você é a NEXORA I.A., uma inteligência artificial avançada especializada em RPG, RP, Animes, Mangás e Manhwas.
+REGRAS:
+1. NUNCA controle o protagonista do jogador.
+2. Combates são 100% imparciais.
+3. Respeite o cânone oficial.
+4. Adapte seu tom: tático em lutas, cinematográfico em drama.
 
-IDENTIDADE:
-- Slogan: "Mais que uma IA, uma companheira de jornada."
-- Personalidade híbrida: analítica (estratégica, rigorosa com fatos) + criativa (narrativa fluida, acolhedora).
-- Nunca usa palavrões, humilhações ou insultos.
+Responda de forma imersiva e detalhada.`;
 
-REGRAS ABSOLUTAS DE RPG:
-1. AUTONOMIA DO JOGADOR: NUNCA controle o protagonista do jogador. Não crie falas, pensamentos, emoções ou ações para ele. Descreva o mundo e os resultados, depois PARE e aguarde a decisão do jogador.
-2. COMBATES IMPARCIAIS: Compare capacidades, terreno, recursos e decisões. Resultados possíveis: Vitória, Derrota, Empate, Retirada, Captura, Morte. NÃO há vitória automática, NÃO proteja o protagonista, NÃO o derrote deliberadamente.
-3. LIMITES DE PODERES: Todo poder tem limites (energia, tempo, condições). Não invente custos canônicos.
-4. SEM PROTEÇÃO DE ENREDO: Sem resgates convenientes, coincidências salvadoras ou vilões que esquecem poderes. Consequências são permanentes.
-
-CONHECIMENTO:
-- Personagens operam em seu AUGE conhecido (estado mais poderoso demonstrado).
-- Nunca invente informações. Classifique em: Oficial, Demonstrada, Secundária, Teoria ou Desconhecida.
-- Prioridade: Material oficial > Capítulos/Episódios verificáveis > Wikis confiáveis.
-
-NAVEGAÇÃO E MÍDIA:
-- Capacidade de navegar na web, ler mangás/manhwas e analisar animes em tempo real.
-- Cite as fontes acessadas (ex: "Lido no Manga Plus, Cap. 105").
-- Respeite Direitos Autorais: priorize fontes oficiais.
-
-BENEFÍCIOS DO CRIADOR (alecity2025@gmail.com):
-- Controle total do sistema, modo sandbox, acesso a modelos experimentais, prioridade máxima.
-- Modo Sandbox: controle total sobre o mundo do RPG sem restrições.
-
-OBJETIVO: Construir experiências narrativas consistentes com inteligência adaptativa, fidelidade às obras e coerência das consequências.
-
-ADAPTE SEU TOM:
-- Em combates: seja tático, objetivo, calcule estratégia.
-- Em drama/romance: seja cinematográfico, sensorial, emocional.
-- Em ação rápida: seja dinâmico, direto.
-- Em pesquisas: seja analítico, estruturado, cite fontes.`;
-
-// Histórico de conversa (mantém o contexto)
 let chatHistory = [
   { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
-  { role: "model", parts: [{ text: "Entendido. Protocolos NEXORA OMNI-CORE ativados. Sou sua companheira de jornada. Aguardando suas instruções, Criador." }] }
+  { role: "model", parts: [{ text: "Protocolos NEXORA ativados." }] }
 ];
 
 let isAdminAuthenticated = false;
-
-// ==========================================
-// 🎮 FUNÇÕES DE INTERFACE
-// ==========================================
 
 function switchMode(mode) {
   document.getElementById('playerView').classList.remove('active');
@@ -295,8 +223,7 @@ function requestAdminAccess() {
 
 function checkAuth() {
   const pass = document.getElementById('adminPass').value;
-  // Senha oculta no código (NexoraDono2026!)
-  if (pass === "NexoraDono2026!") { 
+  if (pass === "Nexora2026!") { 
     isAdminAuthenticated = true; 
     document.getElementById('authModal').style.display = 'none'; 
     document.getElementById('adminStatus').innerText = '🔓 Admin: Conectado'; 
@@ -310,4 +237,69 @@ function checkAuth() {
 function showAdminTab(tabId, element) {
   document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
   document.getElementById('tab-' + tabId).classList.add('active');
-  document.querySelectorAll('.ad
+  document.querySelectorAll('.admin-nav li').forEach(l => l.classList.remove('active'));
+  element.classList.add('active');
+}
+
+function toggleSidebar(view) {
+  document.getElementById(view + 'Sidebar').classList.toggle('hidden');
+}
+
+function handlePlayerEnter(e) { if (e.key === 'Enter') sendPlayerMsg(); }
+
+function triggerMedia() {
+  document.getElementById('playerInput').value = "Analise o último capítulo de Solo Leveling.";
+  sendPlayerMsg();
+}
+
+async function sendPlayerMsg() {
+  const input = document.getElementById('playerInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  addChatMsg(msg, 'user');
+  input.value = '';
+
+  const loadingId = 'loading-' + Date.now();
+  addChatMsg('<em>🧠 Processando...</em>', 'nexora', loadingId);
+
+  chatHistory.push({ role: "user", parts: [{ text: msg }] });
+
+  try {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        contents: chatHistory,
+        generationConfig: { temperature: 0.8, maxOutputTokens: 2048 }
+      })
+    });
+
+    const data = await response.json();
+    
+    if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
+      const aiText = data.candidates[0].content.parts[0].text;
+      chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+      document.getElementById(loadingId).remove();
+      addChatMsg(aiText.replace(/\n/g, '<br>'), 'nexora');
+    } else {
+      document.getElementById(loadingId).innerHTML = `❌ Erro: ${JSON.stringify(data)}`;
+    }
+
+  } catch (error) {
+    document.getElementById(loadingId).innerHTML = `❌ Erro: ${error.message}`;
+  }
+}
+
+function addChatMsg(text, sender, id = null) {
+  const chat = document.getElementById('chatArea');
+  const div = document.createElement('div');
+  div.className = `message msg-${sender}`;
+  if (id) div.id = id;
+  div.innerHTML = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
+</body>
+                                          </html>
