@@ -3,148 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NEXORA AI</title>
+<title>NEXORA AI - Ultimate Edition</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
-body { background: #0A0F1A; color: #e0e0e0; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+body { background: linear-gradient(135deg, #0A0F1A 0%, #1A1F2E 100%); color: #e0e0e0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-/* TOPO */
-.top-nav { background: #0A0F1A; border-bottom: 1px solid #2E5BFF; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.top-nav { background-color: #0A0F1A; border-bottom: 1px solid #2E5BFF; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
 .nav-logo { display: flex; align-items: center; gap: 10px; }
-.logo-n { width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle, #00E5FF, #2E5BFF, #A855F7); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); }
+.logo-n { width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle, #00E5FF, #2E5BFF, #A855F7); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); font-size: 0.9em; flex-shrink: 0; }
 .nav-title { font-size: 1em; background: linear-gradient(90deg, #00E5FF, #A855F7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
-.mode-switcher { display: flex; background: #1A1F2E; border-radius: 20px; padding: 3px; border: 1px solid #2E5BFF; }
-.mode-btn { padding: 6px 12px; border-radius: 17px; border: none; background: transparent; color: #888; cursor: pointer; font-weight: bold; font-size: 0.8em; }
+.mode-switcher { display: flex; background-color: #1A1F2E; border-radius: 20px; padding: 3px; border: 1px solid #2E5BFF; }
+.mode-btn { padding: 6px 14px; border-radius: 17px; border: none; background: transparent; color: #888; cursor: pointer; font-weight: bold; font-size: 0.8em; transition: all 0.3s; }
 .mode-btn.active { background: linear-gradient(90deg, #00E5FF, #A855F7); color: white; }
 .admin-status { font-size: 0.7em; color: #4ecca3; font-family: monospace; }
 
-/* CONTAINER */
 .app-container { flex: 1; display: flex; overflow: hidden; position: relative; }
-.view-section { display: none; width: 100%; height: 100%; flex-direction: column; }
+.view-section { display: none; width: 100%; height: 100%; }
 .view-section.active { display: flex; }
 
-/* BOTÃO FLUTUANTE PARA ABRIR SIDEBAR */
-.float-btn { position: absolute; top: 10px; left: 10px; z-index: 100; width: 40px; height: 40px; border-radius: 50%; background: #1A1F2E; border: 1px solid #2E5BFF; color: white; font-size: 1.2em; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-
-/* SIDEBAR (ESCONDIDA POR PADRÃO NO MOBILE) */
-.sidebar { position: absolute; top: 0; left: 0; width: 85%; max-width: 300px; height: 100%; background: #0A0F1A; z-index: 90; padding: 15px; overflow-y: auto; transform: translateX(-100%); transition: transform 0.3s; border-right: 1px solid #2E5BFF; }
-.sidebar.open { transform: translateX(0); }
-.close-btn { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%; background: #1A1F2E; border: 1px solid #A855F7; color: white; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; }
-
-.live-badge { background: linear-gradient(90deg, #00E5FF, #2E5BFF); padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 0.8em; font-weight: bold; display: flex; align-items: center; gap: 6px; }
-.media-badge { background: linear-gradient(90deg, #A855F7, #2E5BFF); padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 0.8em; font-weight: bold; }
+.player-sidebar { width: 100%; background-color: #0A0F1A; padding: 15px; display: flex; flex-direction: column; overflow-y: auto; position: absolute; top: 0; left: 0; z-index: 50; transition: transform 0.3s; }
+.player-sidebar.hidden { transform: translateX(-100%); }
+.live-web-badge { background: linear-gradient(90deg, #00E5FF, #2E5BFF); padding: 6px 10px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; font-size: 0.75em; font-weight: bold; animation: pulseWeb 2s infinite; }
+@keyframes pulseWeb { 0%, 100% { box-shadow: 0 0 10px rgba(0, 229, 255, 0.3); } 50% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.7); } }
+.live-dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.media-badge { background: linear-gradient(90deg, #A855F7, #2E5BFF); padding: 6px 10px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; font-size: 0.75em; font-weight: bold; }
 .features-list { list-style: none; margin-bottom: 15px; }
-.features-list li { padding: 8px 0; font-size: 0.85em; border-bottom: 1px solid #1A1F2E; }
-.stats-box { background: #1A1F2E; border-radius: 8px; padding: 12px; border-left: 3px solid #00E5FF; }
-.stats-box h4 { color: #00E5FF; font-size: 0.75em; margin-bottom: 8px; text-transform: uppercase; }
-.stat-row { display: flex; justify-content: space-between; font-size: 0.85em; padding: 4px 0; }
+.features-list li { padding: 6px 0; font-size: 0.8em; border-bottom: 1px solid #1A1F2E; }
+.player-stats { background-color: #1A1F2E; border-radius: 8px; padding: 12px; border-left: 3px solid #00E5FF; margin-top: auto; }
+.player-stats h4 { color: #00E5FF; font-size: 0.75em; margin-bottom: 8px; text-transform: uppercase; }
+.stat-row { display: flex; justify-content: space-between; font-size: 0.8em; padding: 4px 0; }
 .stat-row span:last-child { color: #fff; font-weight: bold; }
+.toggle-sidebar-btn { position: absolute; top: 10px; left: 10px; z-index: 60; background: #1A1F2E; border: 1px solid #2E5BFF; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2em; }
 
-/* CHAT */
+.player-main { flex: 1; display: flex; flex-direction: column; background-color: #0A0F1A; width: 100%; }
 .chat-area { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-.message { max-width: 85%; padding: 12px; border-radius: 10px; line-height: 1.4; font-size: 0.9em; animation: slideIn 0.3s; word-wrap: break-word; }
+.message { max-width: 85%; padding: 12px; border-radius: 10px; line-height: 1.4; font-size: 0.9em; animation: slideIn 0.3s; }
 @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .msg-nexora { background: #1A1F2E; align-self: flex-start; border-left: 3px solid #A855F7; }
 .msg-user { background: linear-gradient(135deg, #2E5BFF, #1A1F2E); align-self: flex-end; border-right: 3px solid #00E5FF; color: white; }
 .msg-nexora strong { color: #A855F7; }
 
-/* INPUT - DUAS LINHAS NO MOBILE */
-.input-area { background: #1A1F2E; border-top: 1px solid #2E5BFF; padding: 8px; flex-shrink: 0; }
-.input-icons { display: flex; gap: 6px; margin-bottom: 8px; }
-.input-row { display: flex; gap: 6px; align-items: center; }
-.input-row input { flex: 1; padding: 10px 14px; border-radius: 20px; border: 1px solid #2E5BFF; background: #0A0F1A; color: white; outline: none; font-size: 0.9em; min-width: 0; }
-.input-row input:focus { border-color: #00E5FF; }
-.btn-icon { width: 38px; height: 38px; border-radius: 50%; border: none; background: linear-gradient(135deg, #2E5BFF, #A855F7); color: white; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.input-area { padding: 10px; background: #1A1F2E; border-top: 1px solid #2E5BFF; display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
+.input-area input { flex: 1; min-width: 0; padding: 10px 14px; border-radius: 20px; border: 1px solid #2E5BFF; background: #0A0F1A; color: white; outline: none; font-size: 0.9em; }
+.input-area input:focus { border-color: #00E5FF; }
+.btn-icon { width: 36px; height: 36px; border-radius: 50%; border: none; background: linear-gradient(135deg, #2E5BFF, #A855F7); color: white; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .btn-web { background: linear-gradient(135deg, #00E5FF, #2E5BFF); }
 .btn-media { background: linear-gradient(135deg, #A855F7, #2E5BFF); }
-.btn-send { background: linear-gradient(90deg, #00E5FF, #A855F7); border: none; color: white; cursor: pointer; font-weight: bold; font-size: 0.9em; padding: 10px 16px; border-radius: 20px; display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.btn-send { background: linear-gradient(90deg, #00E5FF, #A855F7); width: auto; padding: 10px 16px; border-radius: 20px; border: none; color: white; cursor: pointer; font-weight: bold; font-size: 0.85em; display: flex; align-items: center; justify-content: center; gap: 4px; flex-shrink: 0; }
 
-/* ADMIN VIEW */
-.admin-sidebar { position: absolute; top: 0; left: 0; width: 85%; max-width: 300px; height: 100%; background: #0A0F1A; z-index: 90; padding: 15px; overflow-y: auto; transform: translateX(-100%); transition: transform 0.3s; border-right: 1px solid #2E5BFF; }
-.admin-sidebar.open { transform: translateX(0); }
+.admin-sidebar { width: 100%; background-color: #0A0F1A; padding: 15px; display: flex; flex-direction: column; position: absolute; top: 0; left: 0; z-index: 50; transition: transform 0.3s; }
+.admin-sidebar.hidden { transform: translateX(-100%); }
 .admin-badge { background: linear-gradient(90deg, #A855F7, #2E5BFF); padding: 8px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 0.85em; margin-bottom: 20px; }
 .admin-nav { list-style: none; }
-.admin-nav li { padding: 10px; margin-bottom: 4px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.85em; }
-.admin-nav li.active { background: rgba(0, 229, 255, 0.1); border-left: 3px solid #00E5FF; }
-.admin-content { flex: 1; padding: 15px; overflow-y: auto; background: #0f1423; }
-.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
-.stat-card { background: #1A1F2E; padding: 12px; border-radius: 8px; border-left: 3px solid #00E5FF; }
-.stat-card h3 { font-size: 0.7em; color: #888; text-transform: uppercase; margin-bottom: 5px; }
-.stat-card .value { font-size: 1.3em; font-weight: bold; color: #00E5FF; }
+.admin-nav li { padding: 10px; margin-bottom: 4px; border-radius: 6px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-size: 0.85em; }
+.admin-nav li:hover, .admin-nav li.active { background: rgba(0, 229, 255, 0.1); border-left: 3px solid #00E5FF; }
+.admin-content { flex: 1; padding: 15px; overflow-y: auto; background-color: #0f1423; width: 100%; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.stat-card { background: #1A1F2E; padding: 15px; border-radius: 10px; border-left: 4px solid #00E5FF; }
+.stat-card h3 { font-size: 0.75em; color: #888; text-transform: uppercase; margin-bottom: 8px; }
+.stat-card .value { font-size: 1.5em; font-weight: bold; color: #00E5FF; }
 .admin-section { display: none; }
-.admin-section.active { display: block; }
-.section-title { font-size: 1.2em; margin-bottom: 12px; color: #fff; border-bottom: 2px solid #2E5BFF; padding-bottom: 6px; }
-.control-group { background: #1A1F2E; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
-.control-group h3 { color: #A855F7; margin-bottom: 10px; font-size: 0.95em; }
-.control-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85em; }
+.admin-section.active { display: block; animation: slideIn 0.3s; }
+.section-title { font-size: 1.3em; margin-bottom: 15px; color: #fff; border-bottom: 2px solid #2E5BFF; padding-bottom: 8px; }
+.control-group { background: #1A1F2E; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+.control-group h3 { color: #A855F7; margin-bottom: 12px; font-size: 1em; }
+.control-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .control-item:last-child { border-bottom: none; }
 .control-label { font-size: 0.9em; }
-.control-desc { font-size: 0.75em; color: #888; margin-top: 2px; }
-.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+.control-desc { font-size: 0.75em; color: #888; margin-top: 3px; }
+.switch { position: relative; display: inline-block; width: 42px; height: 22px; }
 .switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #0A0F1A; transition: .4s; border-radius: 20px; }
-.slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: white; transition: .4s; border-radius: 50%; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #0A0F1A; transition: .4s; border-radius: 22px; }
+.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
 input:checked + .slider { background: linear-gradient(90deg, #00E5FF, #A855F7); }
 input:checked + .slider:before { transform: translateX(20px); }
 
-/* AUTH MODAL */
 .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
 .auth-box { background: #1A1F2E; padding: 25px; border-radius: 12px; border: 1px solid #A855F7; width: 100%; max-width: 320px; text-align: center; }
-.auth-box h3 { color: #A855F7; margin-bottom: 12px; }
-.auth-box input { width: 100%; padding: 10px; margin: 12px 0; background: #0A0F1A; border: 1px solid #2E5BFF; color: white; border-radius: 6px; }
-.auth-box button { width: 100%; padding: 10px; background: linear-gradient(90deg, #00E5FF, #A855F7); border: none; color: white; font-weight: bold; border-radius: 6px; cursor: pointer; }
+.auth-box h3 { color: #A855F7; margin-bottom: 12px; font-size: 1.1em; }
+.auth-box p { font-size: 0.85em; color: #aaa; margin-bottom: 12px; }
+.auth-box input { width: 100%; padding: 10px; margin: 12px 0; background: #0A0F1A; border: 1px solid #2E5BFF; color: white; border-radius: 6px; font-size: 0.95em; }
+.auth-box button { width: 100%; padding: 10px; background: linear-gradient(90deg, #00E5FF, #A855F7); border: none; color: white; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 0.95em; }
 .auth-error { color: #ff4757; font-size: 0.8em; margin-top: 8px; display: none; }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0A0F1A; }
 ::-webkit-scrollbar-thumb { background: #2E5BFF; border-radius: 3px; }
 
-/* DESKTOP */
 @media (min-width: 768px) {
-  .float-btn { display: none; }
-  .sidebar, .admin-sidebar { position: relative; width: 260px; transform: none !important; border-right: 1px solid #2E5BFF; }
-  .close-btn { display: none; }
+  .player-sidebar, .admin-sidebar { width: 260px; position: relative; transform: none !important; }
+  .toggle-sidebar-btn { display: none; }
+  .top-nav { padding: 12px 25px; }
   .chat-area { padding: 25px; }
-  .input-icons { display: none; }
+  .admin-content { padding: 30px; }
 }
 </style>
 </head>
 <body>
 
-<!-- AUTH MODAL -->
 <div class="auth-modal" id="authModal">
 <div class="auth-box">
-<h3>🔒 Autenticação de Criador</h3>
-<p style="font-size: 0.85em; color: #aaa;">Acesso restrito. Regra 19.</p>
-<input type="password" id="adminPass" placeholder="Senha...">
+<h3> Autenticação de Criador</h3>
+<p>Acesso restrito. Conforme Regra 19 do sistema.</p>
+<input type="password" id="adminPass" placeholder="Digite a senha de acesso...">
 <button onclick="checkAuth()">Autenticar</button>
-<p class="auth-error" id="authError">Senha incorreta.</p>
-<p style="font-size: 0.7em; color: #555; margin-top: 10px;">(Senha: admin123)</p>
+<p class="auth-error" id="authError">Senha incorreta. Acesso negado.</p>
+<p style="font-size: 0.7em; color: #555; margin-top: 12px;">(Senha: admin123)</p>
 </div>
 </div>
 
-<!-- TOPO -->
 <div class="top-nav">
 <div class="nav-logo">
 <div class="logo-n">N</div>
 <div class="nav-title">NEXORA AI</div>
 </div>
 <div class="mode-switcher">
-<button class="mode-btn active" id="btnPlayer" onclick="switchMode('player')">🎮 Jogador</button>
+<button class="mode-btn active" id="btnPlayer" onclick="switchMode('player')"> Jogador</button>
 <button class="mode-btn" id="btnAdmin" onclick="requestAdminAccess()">👑 Criador</button>
 </div>
-<div class="admin-status" id="adminStatus">🔒 Desconectado</div>
+<div class="admin-status" id="adminStatus">🔒 Admin: Desconectado</div>
 </div>
 
 <div class="app-container">
 
-<!-- PLAYER VIEW -->
 <div class="view-section active" id="playerView">
-<button class="float-btn" onclick="toggleSidebar('player')">☰</button>
-
-<div class="sidebar" id="playerSidebar">
-<button class="close-btn" onclick="toggleSidebar('player')">✕</button>
-<div class="live-badge">🌐 WEB AO VIVO</div>
+<button class="toggle-sidebar-btn" onclick="toggleSidebar('player')">☰</button>
+<div class="player-sidebar" id="playerSidebar">
+<div class="live-web-badge"><div class="live-dot"></div><span>🌐 WEB AO VIVO</span></div>
 <div class="media-badge">📺 LEITOR DE MÍDIA</div>
 <ul class="features-list">
 <li>🧠 Inteligência Omni-Core</li>
@@ -152,7 +138,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 <li>🎬 Análise de Episódios</li>
 <li>⚔️ RPG & RP Imersivo</li>
 </ul>
-<div class="stats-box">
+<div class="player-stats">
 <h4>Status da Sessão</h4>
 <div class="stat-row"><span>Personagem:</span><span id="pChar">—</span></div>
 <div class="stat-row"><span>Universo:</span><span id="pUni">—</span></div>
@@ -160,86 +146,70 @@ input:checked + .slider:before { transform: translateX(20px); }
 <div class="stat-row"><span>Modo:</span><span id="pMode">Config</span></div>
 </div>
 </div>
-
+<div class="player-main">
 <div class="chat-area" id="chatArea">
 <div class="message msg-nexora">
 <strong>✦ NEXORA OMNI-CORE Inicializado.</strong><br><br>
 Olá! Estou no <strong>Modo Jogador</strong>. Sou sua companheira de jornada.<br><br>
-🆕 Posso navegar, ler e analisar mídias diretamente!<br>
-📖 Mangás e Manhwas (Manga Plus, Webtoon)<br>
-🎬 Animes (legendas e cenas)<br><br>
-Me diga: <strong>Qual o universo e o nome do seu personagem?</strong>
+🆕 <strong>NOVA CAPACIDADE ATIVADA:</strong> Agora posso navegar, ler e analisar mídias diretamente!<br>
+ Posso ler capítulos de <strong>Mangás e Manhwas</strong> (Manga Plus, Webtoon).<br>
+🎬 Posso processar legendas e cenas de <strong>Animes</strong>.<br><br>
+Para começar, me diga: <strong>Qual o universo e o nome do seu personagem?</strong>
 </div>
 </div>
-
 <div class="input-area">
-<div class="input-icons">
 <button class="btn-icon">📎</button>
-<button class="btn-icon btn-web">🌐</button>
-<button class="btn-icon btn-media" onclick="triggerMedia()">📺</button>
-</div>
-<div class="input-row">
-<input type="text" id="playerInput" placeholder="Digite sua ação..." onkeypress="handlePlayerEnter(event)">
-<button class="btn-send" onclick="sendPlayerMsg()">➤ Enviar</button>
+<button class="btn-icon btn-web" title="Pesquisar na Web">🌐</button>
+<button class="btn-icon btn-media" title="Ler/Assistir Mídia" onclick="triggerMedia()"></button>
+<input type="text" id="playerInput" placeholder="Digite sua ação, fala..." onkeypress="handlePlayerEnter(event)">
+<button class="btn-send" onclick="sendPlayerMsg()"> Enviar</button>
 </div>
 </div>
 </div>
 
-<!-- ADMIN VIEW -->
 <div class="view-section" id="adminView">
-<button class="float-btn" onclick="toggleSidebar('admin')">☰</button>
-
+<button class="toggle-sidebar-btn" onclick="toggleSidebar('admin')">☰</button>
 <div class="admin-sidebar" id="adminSidebar">
-<button class="close-btn" onclick="toggleSidebar('admin')">✕</button>
-<div class="admin-badge">👑 CRIADOR</div>
+<div class="admin-badge">👑 CRIADOR AUTENTICADO</div>
 <ul class="admin-nav">
 <li class="active" onclick="showAdminTab('dash', this)">📊 Dashboard</li>
 <li onclick="showAdminTab('benefits', this)">🎁 Benefícios</li>
 <li onclick="showAdminTab('controls', this)">⚙️ Controles</li>
 </ul>
-<div style="margin-top: auto; font-size: 0.75em; color: #888; text-align: center; padding-top: 20px;">
+<div style="margin-top: auto; font-size: 0.75em; color: #888; text-align: center;">
 alecity2025@gmail.com<br><span style="color: #4ecca3;">✓ Verificado</span>
 </div>
 </div>
-
 <div class="admin-content">
 <div class="admin-section active" id="tab-dash">
-<h2 class="section-title">Dashboard</h2>
+<h2 class="section-title">Visão Geral do Sistema</h2>
 <div class="stats-grid">
-<div class="stat-card"><h3>Usuários</h3><div class="value">1,247</div></div>
-<div class="stat-card"><h3>Capítulos</h3><div class="value">12,450</div></div>
-<div class="stat-card"><h3>Animes</h3><div class="value">890</div></div>
-<div class="stat-card"><h3>Receita</h3><div class="value">R$ 8.4K</div></div>
+<div class="stat-card"><h3>Usuários Ativos</h3><div class="value">1,247</div></div>
+<div class="stat-card"><h3>Capítulos Lidos</h3><div class="value">12,450</div></div>
+<div class="stat-card"><h3>Animes Processados</h3><div class="value">890</div></div>
+<div class="stat-card"><h3>Receita Mensal</h3><div class="value">R$ 8.4K</div></div>
 </div>
 <div class="control-group">
-<h3>Atividades Recentes</h3>
-<div class="control-item"><div><div class="control-label">NEXORA leu Naruto Cap. 700</div><div class="control-desc">Manga Plus | 100%</div></div><span style="color:#4ecca3">●</span></div>
-<div class="control-item"><div><div class="control-label">Jujutsu Kaisen Ep. 20</div><div class="control-desc">Crunchyroll | 42.000 frames</div></div><span style="color:#4ecca3">●</span></div>
+<h3>🔥 Atividades Recentes</h3>
+<div class="control-item"><div><div class="control-label">NEXORA leu Naruto Cap. 700</div><div class="control-desc">Fonte: Manga Plus | Precisão: 100%</div></div><span style="color:#4ecca3">●</span></div>
+<div class="control-item"><div><div class="control-label">NEXORA analisou Jujutsu Kaisen Ep. 20</div><div class="control-desc">Fonte: Crunchyroll API | Frames: 42.000</div></div><span style="color:#4ecca3">●</span></div>
 </div>
 </div>
-
 <div class="admin-section" id="tab-benefits">
-<h2 class="section-title">Benefícios</h2>
+<h2 class="section-title">Seus Benefícios Exclusivos</h2>
 <div class="stats-grid">
-<div class="stat-card" style="border-left-color: #A855F7;"><h3>Controle Total</h3><div class="value" style="font-size: 0.9em; color: #fff;">Painel + Dev</div></div>
-<div class="stat-card" style="border-left-color: #A855F7;"><h3>Mídia Premium</h3><div class="value" style="font-size: 0.9em; color: #fff;">Paywalls</div></div>
-<div class="stat-card" style="border-left-color: #A855F7;"><h3>Prioridade</h3><div class="value" style="font-size: 0.9em; color: #fff;">Fila #1</div></div>
-<div class="stat-card" style="border-left-color: #A855F7;"><h3>Sandbox</h3><div class="value" style="font-size: 0.9em; color: #fff;">Deus RPG</div></div>
+<div class="stat-card" style="border-left-color: #A855F7;"><h3>🎯 Controle Total</h3><div class="value" style="font-size: 0.95em; color: #fff;">Painel Completo & Modo Dev</div></div>
+<div class="stat-card" style="border-left-color: #A855F7;"><h3>📺 Acesso Mídia Premium</h3><div class="value" style="font-size: 0.95em; color: #fff;">Leitura de Paywalls autorizada</div></div>
+<div class="stat-card" style="border-left-color: #A855F7;"><h3> Prioridade Máxima</h3><div class="value" style="font-size: 0.95em; color: #fff;">Fila de processamento #1</div></div>
 </div>
 </div>
-
 <div class="admin-section" id="tab-controls">
-<h2 class="section-title">Controles</h2>
+<h2 class="section-title">Controles do Sistema</h2>
 <div class="control-group">
-<h3>Mídia</h3>
-<div class="control-item"><div><div class="control-label">Leitura Automática</div><div class="control-desc">Ler capítulos citados</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-<div class="control-item"><div><div class="control-label">Análise de Frames</div><div class="control-desc">Cenas de luta</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-<div class="control-item"><div><div class="control-label">Direitos Autorais</div><div class="control-desc">Fontes oficiais</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-</div>
-<div class="control-group">
-<h3>RPG</h3>
-<div class="control-item"><div><div class="control-label">Imparcialidade</div><div class="control-desc">Sem proteger jogador</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-<div class="control-item"><div><div class="control-label">Morte Permanente</div><div class="control-desc">Sem reviver</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+<h3> Configurações de Mídia</h3>
+<div class="control-item"><div><div class="control-label">Leitura Automática de Capítulos</div><div class="control-desc">Ler capítulos citados automaticamente</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+<div class="control-item"><div><div class="control-label">Análise de Frames de Anime</div><div class="control-desc">Processar cenas de luta frame a frame</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+<div class="control-item"><div><div class="control-label">Respeitar Direitos Autorais</div><div class="control-desc">Usar apenas fontes oficiais</div></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
 </div>
 </div>
 </div>
@@ -278,7 +248,7 @@ const pass = document.getElementById('adminPass').value;
 if (pass === 'admin123') { 
     isAdminAuthenticated = true; 
     document.getElementById('authModal').style.display = 'none'; 
-    document.getElementById('adminStatus').innerText = '🔓 Conectado'; 
+    document.getElementById('adminStatus').innerText = '🔓 Admin: Conectado'; 
     document.getElementById('adminStatus').style.color = '#00E5FF'; 
     switchMode('admin'); 
 } else { 
@@ -295,7 +265,7 @@ element.classList.add('active');
 
 function toggleSidebar(view) {
 const sidebar = document.getElementById(view + 'Sidebar');
-sidebar.classList.toggle('open');
+sidebar.classList.toggle('hidden');
 }
 
 function handlePlayerEnter(e) { if (e.key === 'Enter') sendPlayerMsg(); }
@@ -319,7 +289,7 @@ setTimeout(() => {
     if (lower.includes("meu nome é") || lower.includes("me chamo")) {
         const name = msg.split(/meu nome é|me chamo/i)[1].trim();
         document.getElementById('pChar').innerText = name;
-        resp = `✅ Protagonista: <strong>${name}</strong>. Memória atualizada.`;
+        resp = `✅ Protagonista registrado: <strong>${name}</strong>. Memória persistente atualizada.`;
     } else if (lower.match(/naruto|one piece|jujutsu|solo leveling|bleach/)) {
         let uni = "Original";
         if(lower.includes("naruto")) uni = "Naruto";
@@ -328,9 +298,9 @@ setTimeout(() => {
         if(lower.includes("solo leveling")) uni = "Solo Leveling";
         if(lower.includes("bleach")) uni = "Bleach";
         document.getElementById('pUni').innerText = uni;
-        resp = `✅ Universo: <strong>${uni}</strong>. Base canônica ativada.`;
+        resp = `✅ Universo carregado: <strong>${uni}</strong>. Base canônica ativada.`;
     } else if (lower.includes("ler") || lower.includes("capítulo") || lower.includes("assistir")) {
-        resp = `📺 <strong>Processando Mídia...</strong><br><br>✅ Conteúdo acessado e analisado!`;
+        resp = `📺 <strong>Processamento de Mídia Iniciado...</strong><br><br>✅ Conteúdo acessado e analisado!`;
     } else if (lower === "rpg") {
         document.getElementById('pMode').innerText = "RPG";
         resp = `⚔️ <strong>Modo RPG ativado.</strong> Sou o Narrador.`;
